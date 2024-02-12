@@ -8,14 +8,16 @@
   outputs = { self, nixpkgs }:
 
     let
-      system = "x86_64-linux";
+      system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
+      
     in 
     {
-      devShells.x86_64-linux.default = 
+      devShells.${system}.default = 
 	pkgs.mkShell {
 	  packages = with pkgs; [
 	    zig
+	    nushell
 	  ];
 	};
     };
